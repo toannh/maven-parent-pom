@@ -1,0 +1,116 @@
+1 Maven eXo Parent POM v8 Release Notes
+
+#toc("2" "4" "true")
+
+1.1 Notable Changes
+
+* \[<a href='http://jira.exoplatform.org/browse/PAR-103'>PAR-103</a>\] - An improvement of speed for projects using the assembly plugin. For that we had to downgrade the version of the plugin from 2.2-beta-5 to 2.1 (see [MASSEMBLY-424>http://jira.codehaus.org/browse/MASSEMBLY-424]). #warning("If your assembly descriptor uses specific 2.2 features either you have to remove them or you have to locally reactivate the version 2.2-beta-5 of the plugin by settings in your module the property : <tt>&lt;version.assembly.plugin&gt;2.2-beta-5&lt;/version.assembly.plugin&gt;</tt>")
+* \[<a href='http://jira.exoplatform.org/browse/PAR-81'>PAR-81</a>\] - A new enforcer rule to check that projects are using only JSE5 APIs
+* \[<a href='http://jira.exoplatform.org/browse/PAR-77'>PAR-77</a>\] - The enforcer rule which checks that a project doesn't use a SNAPSHOT version of a plugin is activated only in release profile.
+* \[<a href='http://jira.exoplatform.org/browse/PAR-109'>PAR-109</a>\] - A new property <tt>defaulteXoReleaseProfiles</tt> is available to be reused to customize project settings. #info("Sample : <tt>&lt;releaseProfiles&gt;${defaulteXoReleaseProfiles},pkg-tomcat,arc-tomcat,wcm,wkf&lt;/releaseProfiles&gt;</tt>")
+* \[<a href='http://jira.exoplatform.org/browse/PAR-110'>PAR-110</a>\] - The release plugin doesn't need any more to to generate/install binaries in <tt>release:prepare</tt> phase. #warning("However on some complex project with plugins that require to access to dependencies artifacts (EAR or assembly for example) this might fails your release preparation step with an artifact not found error. To restore the previous behavior just add this property in your project : <tt>&lt;preparationGoals&gt;clean install&lt;/preparationGoals&gt;</tt>")
+* A new profile <tt>chk-backward-comp</tt> generates reports about backward incompatibilities using [Clirr>http://clirr.sourceforge.net/]. Just call : <tt>mvn -Pchk-backward-comp</tt>
+* Many upgrades of plugins (see below for details)
+
+1.1 System Requirements
+* JVM: version 1.5.0 or higher
+* Maven: version 2.2.1 or higher
+
+1.1 How to use
+
+Just add the following parent declaration in your project parent POM :
+{code}
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.exoplatform</groupId>
+    <artifactId>exo.parent</artifactId>
+    <version>8</version>
+  </parent>
+  ...
+</project>
+{code}
+
+Follow the [eXo Parent POM documentation>Main.Maven eXo Parent POM] to customize its usage.
+
+1.1 How to upgrade
+
+Just change the version of the parent pom you used previously.
+
+1.1 Known Issues
+
+Know issues about this version are listed in [Jira>http://jira.exoplatform.org/secure/IssueNavigator.jspa?reset=true&jqlQuery=project+%3D+PAR+AND+affectedVersion+%3D+par-8]
+
+1.1 Other resources and links
+* [Support forum >http://forum.exoplatform.com]
+* [Community JIRA>http://jira.exoplatform.org/browse/PAR]
+* [Subversion>http://svn.exoplatform.org/projects/parent/]
+* [Maven Repository>http://repository.exoplatform.org/public]
+* [Company site>http://www.exoplatform.com]
+
+1.1 Detailed Change logs
+
+1.1.1 Bug
+
+* \[<a href='http://jira.exoplatform.org/browse/PAR-72'>PAR-72</a>\] -         mvn exobuild:exobuild doesn't work
+* \[<a href='http://jira.exoplatform.org/browse/PAR-96'>PAR-96</a>\] -         pluginManagement : Downgrade org.apache.maven.plugins:maven-javadoc-plugin 2.6.1 -&gt; 2.5
+* \[<a href='http://jira.exoplatform.org/browse/PAR-103'>PAR-103</a>\] -         Assemblies creation are very long
+
+1.1.1 Improvement
+
+* \[<a href='http://jira.exoplatform.org/browse/PAR-74'>PAR-74</a>\] -         Add the generation date in manifest for all eXo jars
+* \[<a href='http://jira.exoplatform.org/browse/PAR-77'>PAR-77</a>\] -         profile : Move enforcer control about usage of a plugin with snapshot version in the release profile
+* \[<a href='http://jira.exoplatform.org/browse/PAR-81'>PAR-81</a>\] -         Use the new animal-sniffer from mojo.codehaus.org and its new enforcer rule to check Java 5 compat of exo deliveries.
+* \[<a href='http://jira.exoplatform.org/browse/PAR-91'>PAR-91</a>\] -         Add settings for clover
+* \[<a href='http://jira.exoplatform.org/browse/PAR-94'>PAR-94</a>\] -         Add a default repository url
+* \[<a href='http://jira.exoplatform.org/browse/PAR-108'>PAR-108</a>\] -         Update MANIFEST in javadoc and source jars to have same info than main artifacts
+* \[<a href='http://jira.exoplatform.org/browse/PAR-109'>PAR-109</a>\] -         Use releaseProfiles property and add a defaulteXoReleaseProfiles property to easily extends default settings
+* \[<a href='http://jira.exoplatform.org/browse/PAR-110'>PAR-110</a>\] -         Do not generate binaries in release;prepare phase
+
+1.1.1 New Feature
+
+* \[<a href='http://jira.exoplatform.org/browse/PAR-82'>PAR-82</a>\] -         generate and deploy javadocs for the release
+* \[<a href='http://jira.exoplatform.org/browse/PAR-83'>PAR-83</a>\] -         Add a profile to check backward incompatibilities
+* \[<a href='http://jira.exoplatform.org/browse/PAR-93'>PAR-93</a>\] -         pluginManagement : Add org.exoplatform.maven.plugins:maven-exopc-plugin:1.0.5
+
+1.1.1 Task
+
+* \[<a href='http://jira.exoplatform.org/browse/PAR-73'>PAR-73</a>\] -         pluginManagement : Add org.codehaus.mojo:javacc-maven-plugin:2.6
+* \[<a href='http://jira.exoplatform.org/browse/PAR-78'>PAR-78</a>\] -         pluginManagement : Add org.exoplatform.maven.plugins:maven-exobuild-plugin:1.2.1
+* \[<a href='http://jira.exoplatform.org/browse/PAR-84'>PAR-84</a>\] -         pluginManagement : Upgrade org.apache.maven.plugins:maven-clean-plugin:2.3 -&gt; 2.4
+* \[<a href='http://jira.exoplatform.org/browse/PAR-85'>PAR-85</a>\] -         pluginManagement : Upgrade org.apache.maven.plugins:maven-compiler-plugin:2.0.2 -&gt; 2.1
+* \[<a href='http://jira.exoplatform.org/browse/PAR-86'>PAR-86</a>\] -         pluginManagement : Upgrade org.apache.maven.plugins:maven-deploy-plugin:2.4 -&gt; 2.5
+* \[<a href='http://jira.exoplatform.org/browse/PAR-87'>PAR-87</a>\] -         pluginManagement : Upgrade org.apache.maven.plugins:maven-site-plugin:2.0.1 -&gt; 2.1
+* \[<a href='http://jira.exoplatform.org/browse/PAR-88'>PAR-88</a>\] -         PluginManagement : Upgrade org.apache.maven.plugins:maven-surefire-plugin:2.4.3 -&gt; 2.5
+* \[<a href='http://jira.exoplatform.org/browse/PAR-89'>PAR-89</a>\] -         PluginManagement : Add org.jibx:maven-jibx-plugin:1.1.6a
+* \[<a href='http://jira.exoplatform.org/browse/PAR-90'>PAR-90</a>\] -         pluginManagement : Upgrade org.apache.maven.plugins:maven-assembly-plugin:2.2-beta-4 -&gt; 2.2-beta-5
+* \[<a href='http://jira.exoplatform.org/browse/PAR-95'>PAR-95</a>\] -         pluginManagement : Upgrade org.apache.maven.plugins:maven-release-plugin:2.0-beta-9 -&gt; 2.0
+* \[<a href='http://jira.exoplatform.org/browse/PAR-97'>PAR-97</a>\] -         pluginManagement : Upgrade org.apache.maven.plugins:maven-checkstyle-plugin 2.4 -&gt; 2.5
+* \[<a href='http://jira.exoplatform.org/browse/PAR-98'>PAR-98</a>\] -         pluginManagement : Upgrade org.apache.maven.plugins:maven-ear-plugin:2.4 -&gt; 2.4.1
+* \[<a href='http://jira.exoplatform.org/browse/PAR-99'>PAR-99</a>\] -         pluginManagement : Upgrade org.apache.maven.plugins:maven-eclipse-plugin:2.7 -&gt; 2.8
+* \[<a href='http://jira.exoplatform.org/browse/PAR-100'>PAR-100</a>\] -         pluginManagement : Upgrade org.apache.maven.plugins:maven-resources-plugin:2.4.1 -&gt; 2.4.2
+* \[<a href='http://jira.exoplatform.org/browse/PAR-101'>PAR-101</a>\] -         pluginManagement : Upgrade org.codehaus.mojo:build-helper-maven-plugin 1.4 -&gt; 1.5
+* \[<a href='http://jira.exoplatform.org/browse/PAR-102'>PAR-102</a>\] -         pluginManagement : Upgrade org.codehaus.mojo:findbugs-maven-plugin 2.3 -&gt; 2.3.1
+* \[<a href='http://jira.exoplatform.org/browse/PAR-104'>PAR-104</a>\] -         pluginManagement : Downgrade org.apache.maven.plugins:maven-assembly-plugin:2.2-beta-5 -&gt; 2.1
+* \[<a href='http://jira.exoplatform.org/browse/PAR-106'>PAR-106</a>\] -         pluginManagement : Upgrade com.atlassian.maven.plugins:maven-clover2-plugin 2.6.3 -&gt; 3.0.1
+* \[<a href='http://jira.exoplatform.org/browse/PAR-107'>PAR-107</a>\] -         pluginManagement : Upgrade org.apache.maven.plugins:maven-ejb-plugin:2.2 -&gt; 2.2.1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

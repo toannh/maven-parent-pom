@@ -1,0 +1,53 @@
+1 Maven eXo Parent POM v1.2 Release Notes
+
+#toc("2" "4" "true")
+
+1.1 Notable Changes
+
+* This is a maintenance release for 1.x branch of parent POM to allow projects to deploy on Nexus.
+
+1.1 System Requirements
+* JVM: version 1.5.0 or higher
+* Maven: version 2.2.1 or higher
+
+1.1 How to use
+
+Just add the following parent declaration in your project parent POM :
+{code}
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.exoplatform</groupId>
+    <artifactId>parent</artifactId>
+    <version>1.2</version>
+  </parent>
+  ...
+</project>
+{code}
+
+Follow the [eXo Parent POM documentation>Main.Maven eXo Parent POM] to customize its usage.
+
+1.1 How to upgrade
+
+Just change the version of the parent pom you used previously.
+
+1.1 Known Issues
+
+Know issues about this version are listed in [Jira>http://jira.exoplatform.org/secure/IssueNavigator.jspa?reset=true&jqlQuery=project+%3D+PAR+AND+affectedVersion+%3D+par-1.2]
+
+1.1 Other resources and links
+* [Support forum >http://forum.exoplatform.com]
+* [Community JIRA>http://jira.exoplatform.org/browse/PAR]
+* [Subversion>http://svn.exoplatform.org/projects/parent/]
+* [Maven Repository>http://repository.exoplatform.org/public]
+* [Company site>http://www.exoplatform.com]
+
+1.1 Detailed Change logs
+
+1.1.1 New Feature
+* [PAR-62>http://jira.exoplatform.org/browse/PAR-62] - Activate Nexus staging for releases
+* [PAR-64>http://jira.exoplatform.org/browse/PAR-64] - Activate deployment of binaries in release:perform
+
+1.1.1 Task
+* [PAR-61>http://jira.exoplatform.org/browse/PAR-61] - Update distributionManagement to use Nexus repositories

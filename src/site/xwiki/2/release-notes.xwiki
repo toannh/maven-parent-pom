@@ -1,0 +1,105 @@
+1 Maven eXo Parent POM v2 Release Notes
+
+#toc("2" "4" "true")
+
+1.1 Notable Changes
+
+* artifactId changed to exo.parent. #warning("Take care while upgrading to change the version and the artifactId.")
+* Update distributionManagement to use Nexus repositories.
+* Set versions of many maven plugins to ensure reproducibility og build.
+* Add a new profile <tt>release</tt> to add additional checks and tasks to generate released binaries.
+* Set sources encoding to UTF-8. #warning("Take care to use UTF-8 encoding to edit sources in IDEs.")
+* Add a new profile <tt>sources</tt> to generate sources artifacts. Can be deactivated with option <tt>-P-sources</tt> or <tt>-P!sources</tt>.
+* Configure eclipse and idea plugins to download sources.
+* Add missing information like license.
+
+1.1 System Requirements
+* JVM: version 1.5.0 or higher
+* Maven: version 2.2.1 or higher
+
+1.1 How to use
+
+Just add the following parent declaration in your project parent POM :
+{code}
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.exoplatform</groupId>
+    <artifactId>exo.parent</artifactId>
+    <version>2</version>
+  </parent>
+  ...
+</project>
+{code}
+
+Follow the [eXo Parent POM documentation>Main.Maven eXo Parent POM] to customize its usage.
+
+1.1 How to upgrade
+
+Just change the version of the parent pom you used previously.
+
+1.1 Known Issues
+
+Know issues about this version are listed in [Jira>http://jira.exoplatform.org/secure/IssueNavigator.jspa?reset=true&jqlQuery=project+%3D+PAR+AND+affectedVersion+%3D+par-2]
+
+1.1 Other resources and links
+* [Support forum >http://forum.exoplatform.com]
+* [Community JIRA>http://jira.exoplatform.org/browse/PAR]
+* [Subversion>http://svn.exoplatform.org/projects/parent/]
+* [Maven Repository>http://repository.exoplatform.org/public]
+* [Company site>http://www.exoplatform.com]
+
+1.1 Detailed Change logs
+
+1.1.1 Bug
+    * [PAR-10>http://jira.exoplatform.org/browse/PAR-10] - Cannot build eXo project sources without SVN working copy.
+    * [PAR-12>http://jira.exoplatform.org/browse/PAR-12] - exec-maven-plugin has no declared version (enforcer failure during packaging)
+
+1.1.1 Improvement
+    * [PAR-8>http://jira.exoplatform.org/browse/PAR-8] - pluginManagement : Upgrade org.apache.maven.plugins:maven-war-plugin:2.0.2 -> 2.1-beta-1
+    * [PAR-17>http://jira.exoplatform.org/browse/PAR-17] - Update distributionManagement to use Nexus repositories
+    * [PAR-18>http://jira.exoplatform.org/browse/PAR-18] - pluginManagement : Upgrade org.codehaus.mojo:buildnumber-maven-plugin:1.0-beta-2 -> 1.0-beta-3
+    * [PAR-45>http://jira.exoplatform.org/browse/PAR-45] - Put source generation in a profile to allow to deactivate it
+    * [PAR-46>http://jira.exoplatform.org/browse/PAR-46] - Set sources encoding to UTF-8
+
+1.1.1 New Feature
+    * [PAR-7>http://jira.exoplatform.org/browse/PAR-7] - pluginManagement : Add org.apache.maven.plugins:maven-assembly-plugin:2.2-beta-4
+    * [PAR-13>http://jira.exoplatform.org/browse/PAR-13] - pluginManagement : Add org.codehaus.mojo:exec-maven-plugin:1.1.1
+    * [PAR-14>http://jira.exoplatform.org/browse/PAR-14] - Add AGPL 3.0 license
+    * [PAR-15>http://jira.exoplatform.org/browse/PAR-15] - Add issueManagement (Jira)
+    * [PAR-16>http://jira.exoplatform.org/browse/PAR-16] - Add ciManagement (Hudson)
+    * [PAR-19>http://jira.exoplatform.org/browse/PAR-19] - pluginManagement : Add org.apache.maven.plugins:maven-clean-plugin:2.3
+    * [PAR-20>http://jira.exoplatform.org/browse/PAR-20] - pluginManagement : Add org.apache.maven.plugins:maven-checkstyle-plugin:2.3
+    * [PAR-21>http://jira.exoplatform.org/browse/PAR-21] - pluginManagement : Add org.codehaus.mojo:cobertura-maven-plugin:2.3
+    * [PAR-22>http://jira.exoplatform.org/browse/PAR-22] - pluginManagement : Add org.apache.maven.plugins:maven-dependency-plugin:2.1
+    * [PAR-23>http://jira.exoplatform.org/browse/PAR-23] - pluginManagement : Add org.apache.maven.plugins:maven-deploy-plugin:2.4
+    * [PAR-24>http://jira.exoplatform.org/browse/PAR-24] - pluginManagement : Add org.apache.maven.plugins:maven-eclipse-plugin:2.7
+    * [PAR-25>http://jira.exoplatform.org/browse/PAR-25] - pluginManagement : Add org.apache.maven.plugins:maven-ear-plugin:2.4
+    * [PAR-26>http://jira.exoplatform.org/browse/PAR-26] - pluginManagement : Add org.apache.maven.plugins:maven-ejb-plugin:2.2
+    * [PAR-27>http://jira.exoplatform.org/browse/PAR-27] - pluginManagement : Add org.apache.maven.plugins:maven-enforcer-plugin:1.0-beta-1
+    * [PAR-28>http://jira.exoplatform.org/browse/PAR-28] - pluginManagement : Add org.codehaus.mojo:findbugs-maven-plugin:2.1
+    * [PAR-29>http://jira.exoplatform.org/browse/PAR-29] - pluginManagement : Add org.apache.maven.plugins:maven-idea-plugin:2.2
+    * [PAR-30>http://jira.exoplatform.org/browse/PAR-30] - pluginManagement : Add org.apache.maven.plugins:maven-install-plugin:2.3
+    * [PAR-31>http://jira.exoplatform.org/browse/PAR-31] - pluginManagement : Add org.apache.maven.plugins:maven-javadoc-plugin:2.6.1
+    * [PAR-32>http://jira.exoplatform.org/browse/PAR-32] - pluginManagement : Add org.codehaus.mojo:javancss-maven-plugin:2.0
+    * [PAR-33>http://jira.exoplatform.org/browse/PAR-33] - pluginManagement : Add org.codehaus.mojo:jdepend-maven-plugin:2.0-beta-2
+    * [PAR-34>http://jira.exoplatform.org/browse/PAR-34] - pluginManagement + reporting : Add org.apache.maven.plugins:maven-jxr-plugin:2.1
+    * [PAR-35>http://jira.exoplatform.org/browse/PAR-35] - reporting : Add org.apache.maven.plugins:maven-project-info-reports-plugin:2.1
+    * [PAR-36>http://jira.exoplatform.org/browse/PAR-36] - pluginManagement : Add org.apache.maven.plugins:maven-plugin-plugin:2.5.1
+    * [PAR-37>http://jira.exoplatform.org/browse/PAR-37] - pluginManagement : Add org.apache.maven.plugins:maven-pmd-plugin:2.4
+    * [PAR-38>http://jira.exoplatform.org/browse/PAR-38] - pluginManagement : Add org.apache.maven.plugins:maven-rar-plugin:2.2
+    * [PAR-39>http://jira.exoplatform.org/browse/PAR-39] - pluginManagement : Add org.apache.maven.plugins:maven-resources-plugin:2.4.1
+    * [PAR-40>http://jira.exoplatform.org/browse/PAR-40] - pluginManagement : Add org.apache.maven.plugins:maven-site-plugin:2.0.1
+    * [PAR-41>http://jira.exoplatform.org/browse/PAR-41] - pluginManagement : Add org.apache.maven.plugins:maven-source-plugin:2.1.1
+    * [PAR-42>http://jira.exoplatform.org/browse/PAR-42] - reporting : Add org.codehaus.mojo:taglist-maven-plugin:2.4
+    * [PAR-43>http://jira.exoplatform.org/browse/PAR-43] - pluginManagement + reporting : Add org.codehaus.mojo:versions-maven-plugin:1.1
+    * [PAR-44>http://jira.exoplatform.org/browse/PAR-44] - pluginManagement : Add org.codehaus.mojo:sonar-maven-plugin:1.0
+    * [PAR-47>http://jira.exoplatform.org/browse/PAR-47] - Add enforcer checks in a profile
+    * [PAR-48>http://jira.exoplatform.org/browse/PAR-48] - Configure eclipse and idea plugins to download sources
+    * [PAR-49>http://jira.exoplatform.org/browse/PAR-49] - Use a profile named release to activate for the release process
+    * [PAR-50>http://jira.exoplatform.org/browse/PAR-50] - Generate aggregated javadoc in release profile
+
+1.1.1 Task
+    * [PAR-11>http://jira.exoplatform.org/browse/PAR-11] - Allow not added files in svn by the buildNumber plugin
+    * [PAR-51>http://jira.exoplatform.org/browse/PAR-51] - Change artifactId to exo.parent to follow conventions in others modules

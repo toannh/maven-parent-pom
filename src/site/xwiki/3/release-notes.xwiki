@@ -1,0 +1,53 @@
+1 Maven eXo Parent POM v3 Release Notes
+
+#toc("2" "4" "true")
+
+1.1 Notable Changes
+
+* [PAR-52>http://jira.exoplatform.org/browse/PAR-52] - Downgrade the version of Sonar plugin to fix an issue with latest release.
+* [PAR-53>http://jira.exoplatform.org/browse/PAR-53] - Add clover2 plugin declaration to use it in Sonar.
+
+1.1 System Requirements
+* JVM: version 1.5.0 or higher
+* Maven: version 2.2.1 or higher
+
+1.1 How to use
+
+Just add the following parent declaration in your project parent POM :
+{code}
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.exoplatform</groupId>
+    <artifactId>exo.parent</artifactId>
+    <version>3</version>
+  </parent>
+  ...
+</project>
+{code}
+
+Follow the [eXo Parent POM documentation>Main.Maven eXo Parent POM] to customize its usage.
+
+1.1 How to upgrade
+
+Just change the version of the parent pom you used previously.
+
+1.1 Known Issues
+
+Know issues about this version are listed in [Jira>http://jira.exoplatform.org/secure/IssueNavigator.jspa?reset=true&jqlQuery=project+%3D+PAR+AND+affectedVersion+%3D+par-3]
+
+1.1 Other resources and links
+* [Support forum >http://forum.exoplatform.com]
+* [Community JIRA>http://jira.exoplatform.org/browse/PAR]
+* [Subversion>http://svn.exoplatform.org/projects/parent/]
+* [Maven Repository>http://repository.exoplatform.org/public]
+* [Company site>http://www.exoplatform.com]
+
+1.1 Detailed Change logs
+
+1.1.1 Bug
+* [PAR-52>http://jira.exoplatform.org/browse/PAR-52] - pluginManagement : Downgrade org.codehaus.mojo:sonar-maven-plugin:1.0 -> 1.0-beta-1
+
+1.1.1 New Feature
+* [PAR-53>http://jira.exoplatform.org/browse/PAR-53] - pluginManagement : Add com.atlassian.maven.plugins:maven-clover2-plugin:2.5.1

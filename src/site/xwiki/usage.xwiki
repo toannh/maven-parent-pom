@@ -1,0 +1,266 @@
+1 Maven eXo Parent POM
+
+#startfloatingbox()
+*Project resources*
+* [Support forum >http://www.exoplatform.org/portal/public/website/community/forum?portal:componentId=forum&portal:type=action&portal:isSecure=false&uicomponent=UIBreadcumbs&op=ChangePath&objectId=forum88a64081c0a8020100b357ddd9419f49]
+* [Issues tracker>http://jira.exoplatform.org/browse/PAR]
+* [Sources>https://git.exoplatform.org/public/tools/maven-parent-pom/]
+* [Maven Repository>http://repository.exoplatform.org/public]
+#endfloatingbox()
+
+#toc("2" "4" "true")
+
+1.1 Description
+
+Projects can use a common maven pom to define very common behavior. The pom is versioned in order to avoid conflicts when it needs to be modified. It ensures that projects inheriting the pom will behaves as expected. The common pom is usually inherited by the config pom of the project as usually all other poms of the project inherits from this one.
+
+1.1 System Requirements
+* JVM: version 1.5.0 or higher
+* Maven: version 2.2.1 or higher
+
+1.1 Releases Notes
+* [Maven eXo Parent POM - 8>Maven eXo Parent POM - 8] (April 2nd, 2010) - \[See [Source>http://fisheye.exoplatform.org/browse/parent/tags/8/pom.xml?r=HEAD]\]
+* [Maven eXo Parent POM - 7>Maven eXo Parent POM - 7] (December 23rd, 2009) - \[See [Source>http://fisheye.exoplatform.org/browse/parent/tags/7/pom.xml?r=HEAD]\]
+* [Maven eXo Parent POM - 6>Maven eXo Parent POM - 6] (December 8th, 2009) - \[See [Source>http://fisheye.exoplatform.org/browse/parent/tags/6/pom.xml?r=HEAD]\]
+* [Maven eXo Parent POM - 5>Maven eXo Parent POM - 5] (December 7th, 2009) - \[See [Source>http://fisheye.exoplatform.org/browse/parent/tags/5/pom.xml?r=HEAD]\]
+* [Maven eXo Parent POM - 4>Maven eXo Parent POM - 4] (December 7th, 2009) - \[See [Source>http://fisheye.exoplatform.org/browse/parent/tags/4/pom.xml?r=HEAD]\]
+* [Maven eXo Parent POM - 3>Maven eXo Parent POM - 3] (November 20th, 2009) - \[See [Source>http://fisheye.exoplatform.org/browse/parent/tags/3/pom.xml?r=HEAD]\]
+* [Maven eXo Parent POM - 2>Maven eXo Parent POM - 2] (November 3rd, 2009) - \[See [Source>http://fisheye.exoplatform.org/browse/parent/tags/2/pom.xml?r=HEAD]\]
+* [Maven eXo Parent POM - 1.2>Maven eXo Parent POM - 1-2] (December 2nd, 2009) - \[See [Source>http://fisheye.exoplatform.org/browse/parent/tags/1.2/pom.xml?r=HEAD]\]
+* [Maven eXo Parent POM - 1.1.1>Maven eXo Parent POM - 1-1-1] (April 14th, 2009) - \[See [Source>http://fisheye.exoplatform.org/browse/parent/tags/1.1.1/pom.xml?r=HEAD]\]
+* [Maven eXo Parent POM - 1.1.0>Maven eXo Parent POM - 1-1-0] (March 11th, 2009) - \[See [Source>http://fisheye.exoplatform.org/browse/parent/tags/1.1.0/pom.xml?r=HEAD]\]
+* [Maven eXo Parent POM - 1.0.0>Maven eXo Parent POM - 1-0-0] (September 29th, 2008) - \[See [Source>http://fisheye.exoplatform.org/browse/parent/tags/1.0.0/pom.xml?r=HEAD]\]
+
+1.1 How to use
+
+Just add the following parent declaration in your project parent POM :
+{code}
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.exoplatform</groupId>
+    <artifactId>exo.parent</artifactId>
+    <version>8.1</version>
+  </parent>
+  ...
+</project>
+{code}
+
+1.1 How to upgrade
+
+Just change the version of the parent pom you used previously. Have a look at each release note of each version you upgrade to see if there are some notable changes which require to modify something in your project.
+
+1.1 How to configure
+
+eXo Parent POM offers many capabilities to customize its behavior to fit projects needs.
+
+1.1.1 Custom properties
+The parent defines and uses a set of cutom properties that can be reused and/or overrided by projects to customize the default behavior of maven defined in the parent pom.
+
+1.1.1.1 Maven plugins versions
+The parent pom defines in a set of properties all recommended versions of maven plugins to use.
+
+
+To ensure the reproducibility of builds these versions are set in pluginManagement thus it doesn't have to be done by projects extending eXo parent POM.
+
+These properties could also be used to configure these plugins as reports.
+
+Each project/module can override a version of a plugin to use a different from the one defined in eXo parent.
+
+#warning("This isn't recommended but could be useful to use a new version of a plugin not yet available in the parent POM or to workaround a bug by using another version. In all cases don not forget [to report to us>http://jira.exoplatform.org/browse/PAR] the change you need. If it's good for one project, it could be useful for others.")
+
+The following table sum-up the list of properties available to control plugins versions :
+
+{table}
+Property|Plugin|Added in eXo parent POM
+<tt>version.antrun.plugin</tt>|[org.apache.maven.plugins:maven-antrun-plugin>http://maven.apache.org/plugins/maven-antrun-plugin/]|2
+<tt>version.assembly.plugin</tt>|[org.apache.maven.plugins:maven-assembly-plugin>http://maven.apache.org/plugins/maven-assembly-plugin/]|2
+<tt>version.buildhelper.plugin</tt>|[org.codehaus.mojo:build-helper-maven-plugin>http://mojo.codehaus.org/build-helper-maven-plugin/]|4
+<tt>version.buildnumber.plugin</tt>|[org.codehaus.mojo:buildnumber-maven-plugin>http://mojo.codehaus.org/buildnumber-maven-plugin/]|2
+<tt>version.clean.plugin</tt>|[org.apache.maven.plugins:maven-clean-plugin>http://maven.apache.org/plugins/maven-clean-plugin/]|2
+<tt>version.checkstyle.plugin</tt>|[org.apache.maven.plugins:maven-checkstyle-plugin>http://maven.apache.org/plugins/maven-checkstyle-plugin/]|2
+<tt>version.clirr.plugin</tt>|[org.codehaus.mojo:clirr-maven-plugin>http://mojo.codehaus.org/clirr-maven-plugin/]|8
+<tt>version.clover2.plugin</tt>|[com.atlassian.maven.plugins:maven-clover2-plugin>http://confluence.atlassian.com/display/CLOVER/Clover-for-Maven+2+User%27s+Guide]|3
+<tt>version.cobertura.plugin</tt>|[org.codehaus.mojo:cobertura-maven-plugin>http://mojo.codehaus.org/cobertura-maven-plugin/]|2
+<tt>version.compiler.plugin</tt>|[org.apache.maven.plugins:maven-compiler-plugin>http://maven.apache.org/plugins/maven-compiler-plugin/]|2
+<tt>version.dependency.plugin</tt>|[org.apache.maven.plugins:maven-dependency-plugin>http://maven.apache.org/plugins/maven-dependency-plugin/]|2
+<tt>version.deploy.plugin</tt>|[org.apache.maven.plugins:maven-deploy-plugin>http://maven.apache.org/plugins/maven-deploy-plugin/]|2
+<tt>version.eclipse.plugin</tt>|[org.apache.maven.plugins:maven-eclipse-plugin>http://maven.apache.org/plugins/maven-eclipse-plugin/]|2
+<tt>version.ear.plugin</tt>|[org.apache.maven.plugins:maven-ear-plugin>http://maven.apache.org/plugins/maven-ear-plugin/]|2
+<tt>version.ejb.plugin</tt>|[org.apache.maven.plugins:maven-ejb-plugin>http://maven.apache.org/plugins/maven-ejb-plugin/]|2
+<tt>version.enforcer.plugin</tt>|[org.apache.maven.plugins:maven-enforcer-plugin>http://maven.apache.org/plugins/maven-enforcer-plugin/]|2
+<tt>version.exec.plugin</tt>|[org.codehaus.mojo:exec-maven-plugin>http://mojo.codehaus.org/exec-maven-plugin/]|2
+<tt>version.exobuild.plugin</tt>|org.exoplatform.maven.plugins:maven-exobuild-plugin|8
+<tt>version.exopc.plugin</tt>|org.exoplatform.maven.plugins:maven-exopc-plugin|8
+<tt>version.failsafe.plugin</tt>|[org.codehaus.mojo:failsafe-maven-plugin>http://mojo.codehaus.org/failsafe-maven-plugin/]|5
+<tt>version.findbugs.plugin</tt>|[org.codehaus.mojo:findbugs-maven-plugin>http://mojo.codehaus.org/findbugs-maven-plugin/]|2
+<tt>version.idea.plugin</tt>|[org.apache.maven.plugins:maven-idea-plugin>http://maven.apache.org/plugins/maven-idea-plugin/]|2
+<tt>version.install.plugin</tt>|[org.apache.maven.plugins:maven-install-plugin>http://maven.apache.org/plugins/maven-install-plugin/]|2
+<tt>version.jar.plugin</tt>|[org.apache.maven.plugins:maven-jar-plugin>http://maven.apache.org/plugins/maven-jar-plugin/]|2
+<tt>version.javacc.plugin</tt>|[org.codehaus.mojo:javacc-maven-plugin>http://mojo.codehaus.org/javacc-maven-plugin/]|8
+<tt>version.javadoc.plugin</tt>|[org.apache.maven.plugins:maven-javadoc-plugin>http://maven.apache.org/plugins/maven-javadoc-plugin/]|2
+<tt>version.javancss.plugin</tt>|[org.codehaus.mojo:javancss-maven-plugin>http://mojo.codehaus.org/javancss-maven-plugin/]|2
+<tt>version.jdepend.plugin</tt>|[org.codehaus.mojo:jdepend-maven-plugin>http://mojo.codehaus.org/jdepend-maven-plugin/]|2
+<tt>version.jibx.plugin</tt>|[org.jibx:maven-jibx-plugin>http://jibx.sourceforge.net/maven-jibx-plugin/]|8
+<tt>version.jxr.plugin</tt>|[org.apache.maven.plugins:maven-jxr-plugin>http://maven.apache.org/plugins/maven-jxr-plugin/]|2
+<tt>version.pir.plugin</tt>|[org.apache.maven.plugins:maven-project-info-reports-plugin>http://maven.apache.org/plugins/maven-project-info-reports-plugin/]|2
+<tt>version.plugin.plugin</tt>|[org.apache.maven.plugins:maven-plugin-plugin>http://maven.apache.org/plugins/maven-plugin-plugin/]|2
+<tt>version.pmd.plugin</tt>|[org.apache.maven.plugins:maven-pmd-plugin>http://maven.apache.org/plugins/maven-pmd-plugin/]|2
+<tt>version.rar.plugin</tt>|[org.apache.maven.plugins:maven-rar-plugin>http://maven.apache.org/plugins/maven-rar-plugin/]|2
+<tt>version.release.plugin</tt>|[org.apache.maven.plugins:maven-release-plugin>http://maven.apache.org/plugins/maven-release-plugin/]|2
+<tt>version.resources.plugin</tt>|[org.apache.maven.plugins:maven-resources-plugin>http://maven.apache.org/plugins/maven-resources-plugin/]|2
+<tt>version.site.plugin</tt>|[org.apache.maven.plugins:maven-site-plugin>http://maven.apache.org/plugins/maven-site-plugin/]|2
+<tt>version.sonar.plugin</tt>|[org.codehaus.mojo:sonar-maven-plugin>http://mojo.codehaus.org/sonar-maven-plugin/]|2
+<tt>version.source.plugin</tt>|[org.apache.maven.plugins:maven-source-plugin>http://maven.apache.org/plugins/maven-source-plugin/]|2
+<tt>version.surefire.plugin</tt>|[org.apache.maven.plugins:maven-surefire-plugin>http://maven.apache.org/plugins/maven-surefire-plugin/] and [org.apache.maven.plugins:maven-surefire-report-plugin>http://maven.apache.org/plugins/maven-surefire-report-plugin/]|2
+<tt>version.taglist.plugin</tt>|[org.codehaus.mojo:taglist-maven-plugin>http://mojo.codehaus.org/taglist-maven-plugin/]|2
+<tt>version.versions.plugin</tt>|[org.codehaus.mojo:versions-maven-plugin>http://mojo.codehaus.org/versions-maven-plugin/]|2
+<tt>version.war.plugin</tt>|[org.apache.maven.plugins:maven-war-plugin>http://maven.apache.org/plugins/maven-war-plugin/]|2
+{table}
+
+1.1.1.1 Build settings
+
+These custom properties are defined in eXo parent POM and could be overridden to change the behavior of the build.
+
+The following table gives the property name, its description and when it was added in eXo parent POM.
+
+{table}
+Property|Description|Value in latest version of eXo parent POM|Added in eXo parent POM
+<tt>exo.product.name</tt>|The name of the product. This information is inserted in MANIFEST bundled in artifacts generated by the project.|eXo Platform|1.1.0
+<tt>exo.product.specification</tt>|The major version of the product.  This information is inserted in MANIFEST bundled in artifacts generated by the project.|N/A|1.1.0
+<tt>maven.min.version</tt>|The minimal version of maven required to build projects.|2.2.1|2
+<tt>jdk.min.version</tt>|The minimal version of jdk required to build projects. You can need to use an upper version of the JDK than the version of java you target.|<tt>${maven.compiler.source}</tt>|2
+<tt>defaulteXoReleaseProfiles</tt>|This is the default list of profiles activated for a release by the eXo parent POM.|release|8
+{table}
+
+1.1.1 Standard properties
+
+These properties are defined in eXo parent POM and could be overridden to change the behavior of the build.
+
+These properties are used by default by some maven plugins but we override them to define different default values than the one defined in these plugins.
+
+The following table gives the property name, its description and when it was added in eXo parent POM.
+
+{table}
+Property|Description|Value in latest version of eXo parent POM|Added in eXo parent POM
+<tt>project.build.sourceEncoding</tt>|The encoding of source files.|UTF-8|2
+<tt>maven.compiler.target</tt>|The -target argument for the Java compiler. Binary compatibility with Java platform.|1.5|2
+<tt>maven.compiler.source</tt>|The -source argument for the Java compiler. Source (Language) compatibility with Java platform.|1.5|2
+<tt>maven.compiler.showDeprecation</tt>|To show source locations where deprecated APIs are used.|true|2
+<tt>maven.compiler.showWarnings</tt>|To show compilation warnings.|true|2
+<tt>maven.compiler.optimize</tt>|To optimize the compiled code using the compiler's optimization methods.|true|2
+<tt>releaseProfiles</tt>|Used in release:perform phase to activate some profiles while generating and deploying released artifacts.|<tt>${defaulteXoReleaseProfiles}</tt>|8
+<tt>useReleaseProfile</tt>|To activate the default release profile provided by maven.|false|2
+<tt>autoVersionSubmodules</tt>|To use same versions for all modules in a project in release:prepare phase.|true|2
+{table}
+
+1.1.1 Profiles
+
+1.1.1.1 Enforce rules
+*Profile identifier :* enforce
+
+*Activation :* Always activated by default. Can be deactivated with <tt>-D!skip-enforce</tt>.
+
+*Description :* Enforce environment constraints like minimal versions of jdk and maven to use to build the project.
+
+*Since eXo parent POM :* 2
+
+1.1.1.1 Generate sources
+*Profile identifier :* sources
+
+*Activation :* Always activated by default. Can be deactivated with <tt>-D!skip-sources</tt>.
+
+*Description :* Generate sources artifacts.
+
+*Since eXo parent POM :* 2
+
+1.1.1.1 Release a project
+*Profile identifier :* release
+
+*Activation :* Deactivated by default. Can be activated with <tt>-Prelease</tt>.
+
+*Description :* Add more checks like to enforce to set plugins versions to use. Generate javadoc artifacts and more while releasing a product.
+
+*Since eXo parent POM :* 2
+
+1.1.1.1 Launch integration tests
+*Profile identifier :* run-its
+
+*Activation :* Deactivated by default. Can be activated with <tt>-Prun-its</tt>.
+
+*Description :* Launch integration tests from JUnit using the [failsafe>http://mojo.codehaus.org/failsafe-maven-plugin/] plugin.
+
+*Since eXo parent POM :* 5
+
+1.1.1.1 Check backward compatibility
+*Profile identifier :* chk-backward-comp
+
+*Activation :* Deactivated by default. Can be activated with <tt>-Pchk-backward-comp</tt>.
+
+*Description :* This profile uses [Clirr>http://clirr.sourceforge.net/] and its [maven plugin>http://mojo.codehaus.org/clirr-maven-plugin/] to find and report incompatible changes in APIs with the latest
+release.
+
+*Since eXo parent POM :* 8
+
+*Usage*
+Just have to call :
+{code}
+mvn -Pchk-backward-comp
+{code}
+Maven will use clirr to validate the backward compatibility with the latest release.
+In each module it will generate in the target directory a file named <tt>clirr-report.txt</tt> with the list of errors.
+
+#info("In the future we'll try to add an aggregating mode in the plugin to generate only one report for all submodules. ")
+
+Workaroud : In the meantime if you are using a unix you can aggregate everythink with :
+{code}
+for i in `find . -name clirr-report.txt -not -empty`; do echo "====="; echo "CLIRR in" `dirname $i`; echo "====="; cat $i; done > aio-1.6.x-clirr-report.txt
+{code}
+
+*Setup the version which must be used to do the validation*
+Using clirr with the latest release has something magic that let us think that maven won't do an error to find the latest. Moreover in theory we should validate the compatibility from the last major release.
+Thus is an important practice to set in each project the version clirr has to use to validate the compatibility.
+For example in portal 2.5.x we should put in its parent pom properties :
+{code}
+  <properties>
+    ...
+    <!-- The version which with clirr checks the compatibility of APIs -->
+    <comparisonVersion>2.5.7</comparisonVersion>
+  </properties>
+{code}
+And better we should try to go to the older version where the compatibility is respected.
+
+*JIBx incompatibility*
+There is an incompatibility between jibx and clirr. Clirr fails on some Jibx generated classes.
+To avoid this error I excluded by default the control on */JiBX_ classes
+
+*Exclude some errors*
+In theory we should test only our public APIs. But we don't have them thus we tests all our code. Perhaps sometimes we'll have broke the compatibility.
+Clirr allows ony to remove the control on a set of classes (we cannot excludes only some methods).
+To excludes some classes from clirr validation you have to do in the module where the error is :
+{code}
+<reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>clirr-maven-plugin</artifactId>
+        <version>${version.clirr.plugin}</version>
+        <configuration>
+          <!-- There is a know incompatibility between clirr and jibx -->
+          <excludes>
+            <exclude>**/JiBX_*</exclude>
+            <exclude>org/exoplatform/foo/Bar.class</exclude>
+            <exclude>org/exoplatform/bar/Foo.class</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+    </plugins>
+  </reporting>
+{code}
+
+*Why in reports ?* Because runtime plugins are inheriting from the configuration sets in reporting. Thus we'll have the same behavior when we launch the command line and when the web site is generated (soon).
+
+*Release*
+The clirr control is set as blocking in the release profile thus to do a release the team has to fix all clirr errors (or ignore false errors).
+The release profile is activated in hudson thus the team should be warn with a failing build if they break the compatibility
